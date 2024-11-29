@@ -1,5 +1,6 @@
-# Distributed Systems: Promise and Perils
-Patterns of Distributed Systems (Fitness Functions, Chaos Engineering, Resilience, Metrics).
+# Observability
+When you run an application, you want to know how well the app is performing and to detect potential problems before they become larger.  
+You can do this by emitting telemetry data such as logs or metrics from your app, then monitoring and analyzing that data.
 
 ## Metrics
 What are Metrics?  
