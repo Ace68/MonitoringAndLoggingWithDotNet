@@ -1,4 +1,6 @@
-﻿using OpenTelemetry.Metrics;
+﻿using Azure.Monitor.OpenTelemetry.AspNetCore;
+using OpenTelemetry.Instrumentation.Runtime;
+using OpenTelemetry.Metrics;
 
 namespace LoggingAndMonitoringWithDotNet.Modules;
 
@@ -9,7 +11,12 @@ public class MetricsModule : IModule
     
     public IServiceCollection Register(WebApplicationBuilder builder)
     {
+        // Configure the OpenTelemetry meter provider to add runtime instrumentation.
+        builder.Services.ConfigureOpenTelemetryMeterProvider((_, provider) =>  provider.AddRuntimeInstrumentation()); 
+
         builder.Services.AddOpenTelemetry()
+            // Configure OpenTelemetry to use Azure Monitor.
+            .UseAzureMonitor()
             // Add Metrics for ASP.NET Core and our custom metrics and export to Prometheus
             .WithMetrics(meterProviderBuilder =>
             {
