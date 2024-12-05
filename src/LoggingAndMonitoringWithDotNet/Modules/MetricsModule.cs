@@ -1,4 +1,5 @@
-﻿using Azure.Monitor.OpenTelemetry.AspNetCore;
+﻿using Azure.Identity;
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using OpenTelemetry.Instrumentation.Runtime;
 using OpenTelemetry.Metrics;
 
