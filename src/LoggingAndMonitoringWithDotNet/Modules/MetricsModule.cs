@@ -11,6 +11,16 @@ public class MetricsModule : IModule
     
     public IServiceCollection Register(WebApplicationBuilder builder)
     {
+        builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>(config =>
+        {
+            config.SetAzureTokenCredential(new DefaultAzureCredential());
+        });
+
+        builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
+        {
+            ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+        });
+        
         // Configure the OpenTelemetry meter provider to add runtime instrumentation.
         builder.Services.ConfigureOpenTelemetryMeterProvider((_, provider) =>  provider.AddRuntimeInstrumentation()); 
 
