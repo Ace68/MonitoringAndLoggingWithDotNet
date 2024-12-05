@@ -19,7 +19,7 @@ public class MetricsModule : IModule
 
         builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
         {
-            ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+            ConnectionString = builder.Configuration["AzureMonitor:ConnectionString"]
         });
         
         // Configure the OpenTelemetry meter provider to add runtime instrumentation.
