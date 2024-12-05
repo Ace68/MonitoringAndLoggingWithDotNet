@@ -1,6 +1,5 @@
 ﻿using Azure.Identity;
 using Azure.Monitor.OpenTelemetry.AspNetCore;
-using OpenTelemetry.Instrumentation.Runtime;
 using OpenTelemetry.Metrics;
 
 namespace LoggingAndMonitoringWithDotNet.Modules;
@@ -17,6 +16,7 @@ public class MetricsModule : IModule
             config.SetAzureTokenCredential(new DefaultAzureCredential());
         });
 
+        var cs = builder.Configuration["AzureMonitor:ConnectionString"];
         builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
         {
             ConnectionString = builder.Configuration["AzureMonitor:ConnectionString"]
