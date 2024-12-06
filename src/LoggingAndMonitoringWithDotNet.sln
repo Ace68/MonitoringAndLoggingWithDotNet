@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.StandardResilience",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.CircuitBreaker", "BrewUp.CircuitBreaker\BrewUp.CircuitBreaker.csproj", "{EF6BCDA9-7F5A-459B-AE46-AEA0D9D32B69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.ChaosAndTelemetry", "BrewUp.ChaosAndTelemetry\BrewUp.ChaosAndTelemetry.csproj", "{B2962497-F23A-4410-9364-1446B2EC6BD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{EF6BCDA9-7F5A-459B-AE46-AEA0D9D32B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF6BCDA9-7F5A-459B-AE46-AEA0D9D32B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF6BCDA9-7F5A-459B-AE46-AEA0D9D32B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2962497-F23A-4410-9364-1446B2EC6BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2962497-F23A-4410-9364-1446B2EC6BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2962497-F23A-4410-9364-1446B2EC6BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2962497-F23A-4410-9364-1446B2EC6BD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{7C12CCA4-3E53-48AD-A2B8-9FD7FBE6084D} = {8EEA1BF2-9613-4D3A-AB5D-DD8FA21B0ACD}
 		{810ED1FE-EEA8-44E0-A0DA-CC3C4987AA24} = {B3377118-9B97-44F0-822E-02487379CFB2}
 		{EF6BCDA9-7F5A-459B-AE46-AEA0D9D32B69} = {B3377118-9B97-44F0-822E-02487379CFB2}
+		{B2962497-F23A-4410-9364-1446B2EC6BD1} = {B3377118-9B97-44F0-822E-02487379CFB2}
 	EndGlobalSection
 EndGlobal

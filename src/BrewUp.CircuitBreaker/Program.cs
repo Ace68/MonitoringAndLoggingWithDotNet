@@ -47,5 +47,3 @@ for (var i = 0; i < 30; i++)
     if (i < 29)
         Console.Clear();
 }
-
-
