@@ -9,10 +9,15 @@ public static class BrewUpEndpoints
         var group = endpoints.MapGroup("/v1/brewup/")
             .WithTags("Sales");
         
-        group.MapGet("/", HandleGetOrders)
+        group.MapGet("/orders", HandleGetOrders)
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status200OK)
-            .WithName("GetSalesOrders");
+            .WithName("GetOrders");
+        
+        group.MapGet("/beers", HandleGetBeers)
+            .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status200OK)
+            .WithName("GetBeers");
 
         return endpoints;
     }
@@ -75,5 +80,31 @@ public static class BrewUpEndpoints
         };
 
         return Task.FromResult(Results.Ok(orders));
+    }
+    
+    private static Task<IResult> HandleGetBeers(
+        CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        
+        var beers = new List<Beer>
+        {
+            new()
+            {
+                BeerId = Guid.NewGuid().ToString(),
+                Name = "Muflone IPA",
+                Quantity = new Quantity(20, "Lt"),
+                Price = new Price(5, "EUR")
+            },
+            new()
+            {
+                BeerId = Guid.NewGuid().ToString(),
+                Name = "Muflone Weiss",
+                Quantity = new Quantity(10, "Lt"),
+                Price = new Price(5, "EUR")
+            }
+        };
+
+        return Task.FromResult(Results.Ok(beers));
     }
 }
