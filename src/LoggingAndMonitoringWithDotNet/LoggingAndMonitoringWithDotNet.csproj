@@ -7,6 +7,7 @@
     <UserSecretsId>4d21aac1-ce6c-460c-89a8-f46484150c55</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <SonarQubeExclude>True</SonarQubeExclude>
+    <ApplicationInsightsResourceId>/subscriptions/dd2af1b0-bbbb-4b9f-8f51-cdcf13636585/resourceGroups/brewup-resourcegroup/providers/microsoft.insights/components/brewup-applicationinsights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
 	<ItemGroup>
