@@ -28,7 +28,7 @@ public static class BrewUpEndpoints
         var client = httpClientFactory.CreateClient("BrewUpOrders");
             
         var response = await client.GetAsync(
-            "v1/brewup", cancellationToken);
+            "v1/brewup/orders", cancellationToken);
 
         return response.IsSuccessStatusCode 
             ? Results.Ok(await response.Content.ReadAsStringAsync(cancellationToken))
@@ -43,7 +43,7 @@ public static class BrewUpEndpoints
         var client = httpClientFactory.CreateClient("BrewUpBeers");
             
         var response = await client.GetAsync(
-            "v1/brewup", cancellationToken);
+            "v1/brewup/beers", cancellationToken);
 
         return response.IsSuccessStatusCode 
             ? Results.Ok(await response.Content.ReadAsStringAsync(cancellationToken))

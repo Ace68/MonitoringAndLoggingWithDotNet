@@ -1,8 +1,7 @@
-﻿using System.Net;
-using LoggingAndMonitoringWithDotNet.Endpoints;
-using Microsoft.Extensions.Http.Resilience;
+﻿using System.Diagnostics.Metrics;
+using System.Net;
+using Microsoft.Extensions.Logging.Abstractions;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
@@ -27,10 +26,11 @@ public class MetricsModule : IModule
                                                 ?? throw new InvalidOperationException());
                 configure.DefaultRequestHeaders.Add("accept", "application/json");
             })
-            .AddResilienceHandler("orders-pipeline", (ResiliencePipelineBuilder<HttpResponseMessage> builder) => 
+            .AddResilienceHandler("orders-pipeline", (ResiliencePipelineBuilder<HttpResponseMessage> pipelineBuilder) => 
             {
                 // Start with configuring standard resilience strategies
-                builder
+                pipelineBuilder
+                    .ConfigureTelemetry(LoggerFactory.Create(bld => bld.AddOpenTelemetry().AddConsole()))
                     .AddConcurrencyLimiter(10, 100)
                     .AddRetry(new RetryStrategyOptions<HttpResponseMessage>
                     {
@@ -42,17 +42,16 @@ public class MetricsModule : IModule
                     });
                 // .AddTimeout(TimeSpan.FromSeconds(5));
 
-                // // Next, configure chaos strategies to introduce controlled disruptions.
-                // // Place these after the standard resilience strategies.
-                //
-                // // Inject chaos into 2% of invocations
-                // const double InjectionRate = 0.02;
-                //
-                // builder
-                //     .AddChaosLatency(InjectionRate, TimeSpan.FromMinutes(1)) // Introduce a delay as chaos latency
-                //     .AddChaosFault(InjectionRate, () => new InvalidOperationException("Chaos strategy injection!")) // Introduce a fault as chaos
-                //     .AddChaosOutcome(InjectionRate, () => new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError)) // Simulate an outcome as chaos
-                //     .AddChaosBehavior(0.001, cancellationToken => RestartRedisAsync(cancellationToken)); // Introduce a specific behavior as chaos            
+                // Next, configure chaos strategies to introduce controlled disruptions.
+                // Place these after the standard resilience strategies.
+                
+                // Inject chaos into 20% of invocations
+                const double InjectionRate = 0.2;
+                
+                pipelineBuilder
+                    .AddChaosLatency(InjectionRate, TimeSpan.FromMinutes(1)); // Introduce a delay as chaos latency
+                    // .AddChaosFault(InjectionRate, () => new InvalidOperationException("Chaos strategy injection!")) // Introduce a fault as chaos
+                    // .AddChaosOutcome(InjectionRate, () => new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError)); // Simulate an outcome as chaos
             });
 
             builder.Services.AddHttpClient(httpBeersClientName, configure =>
@@ -65,6 +64,7 @@ public class MetricsModule : IModule
             {
                 // Start with configuring standard resilience strategies
                 configure
+                    .ConfigureTelemetry(LoggerFactory.Create(bld => bld.AddOpenTelemetry().AddConsole()))
                     .AddConcurrencyLimiter(10, 100)
                     .AddCircuitBreaker(new CircuitBreakerStrategyOptions<HttpResponseMessage>
                     {
@@ -82,22 +82,31 @@ public class MetricsModule : IModule
                 const double InjectionRate = 0.02;
                 
                 configure
-                    .AddChaosLatency(InjectionRate, TimeSpan.FromMinutes(1)) // Introduce a delay as chaos latency
                     .AddChaosFault(InjectionRate, () => new InvalidOperationException("Chaos strategy injection!")) // Introduce a fault as chaos
                     .AddChaosOutcome(InjectionRate, () => new HttpResponseMessage(HttpStatusCode.InternalServerError)); // Simulate an outcome as chaos
             });
-        
-        builder.Services.AddOpenTelemetry().WithMetrics(opts => opts
-            .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Pollyv8.WebApi"))
-            .AddMeter("Polly")
-            .AddOtlpExporter(options =>
-            {
-                options.Endpoint = new Uri(builder.Configuration.GetValue<string>("OtlpEndpointUri") 
-                                           ?? throw new InvalidOperationException());
-            }));
+            
+            builder.Services.AddOpenTelemetry()
+                // Add Metrics for ASP.NET Core and our custom metrics and export to Prometheus
+                .WithMetrics(meterProviderBuilder =>
+                {
+                    // Metrics provider from OpenTelemetry
+                    meterProviderBuilder.AddAspNetCoreInstrumentation();
+                    meterProviderBuilder.AddMeter("Polly");
+                    meterProviderBuilder.AddMeter();
+                    // Metrics provides by ASP.NET Core in .NET 8
+                    meterProviderBuilder.AddMeter("Microsoft.AspNetCore.Hosting");
+                    meterProviderBuilder.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+                    meterProviderBuilder.AddPrometheusExporter();
+                });
 		
         return builder.Services;
     }
 
-    public WebApplication Configure(WebApplication app) => app;
+    public WebApplication Configure(WebApplication app)
+    {
+        app.MapPrometheusScrapingEndpoint();
+        
+        return app;
+    }
 }
