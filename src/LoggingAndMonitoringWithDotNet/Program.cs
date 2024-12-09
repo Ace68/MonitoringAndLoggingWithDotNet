@@ -7,6 +7,8 @@ builder.RegisterModules();
 
 var app = builder.Build();
 
+app.MapDefaultEndpoints();
+
 app.ConfigureModules();
 
 await app.RunAsync();

@@ -7,29 +7,26 @@
     <UserSecretsId>4d21aac1-ce6c-460c-89a8-f46484150c55</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <SonarQubeExclude>True</SonarQubeExclude>
-    <ApplicationInsightsResourceId>/subscriptions/dd2af1b0-bbbb-4b9f-8f51-cdcf13636585/resourceGroups/brewup-resourcegroup/providers/microsoft.insights/components/brewup-applicationinsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/dd2af1b0-bbbb-4b9f-8f51-cdcf13636585/resourceGroups/brewup-resourcegroup/providers/microsoft.insights/components/brewup-insights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
 	<ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.13.0" />
     <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.10.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.10.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0" />
     <PackageReference Include="Serilog" Version="4.1.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\LoggingAndMonitoringWithDotNet.ServiceDefaults\LoggingAndMonitoringWithDotNet.ServiceDefaults.csproj" />
 	</ItemGroup>
 
 </Project>

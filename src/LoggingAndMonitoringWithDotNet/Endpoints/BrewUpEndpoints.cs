@@ -23,10 +23,14 @@ public static class BrewUpEndpoints
   }
 
   private static Task<IResult> HandleGetOrders(
+      ILoggerFactory loogerFactory,
       CancellationToken cancellationToken)
   {
     cancellationToken.ThrowIfCancellationRequested();
 
+    var logger = loogerFactory.CreateLogger("brewup-orders");
+
+    logger.LogWarning("Getting BrewUp Orders");
     var orders = new List<SalesOrder>
         {
             new()
@@ -83,10 +87,15 @@ public static class BrewUpEndpoints
   }
 
   private static Task<IResult> HandleGetBeers(
+      ILoggerFactory loogerFactory,
     CancellationToken cancellationToken)
   {
     cancellationToken.ThrowIfCancellationRequested();
 
+    var logger = loogerFactory.CreateLogger("brewup-beers");
+    
+    logger.LogWarning("Getting BrewUp Beers");
+    
     var beers = new List<Beer>
       {
         new()
