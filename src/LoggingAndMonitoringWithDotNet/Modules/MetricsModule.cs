@@ -7,6 +7,7 @@ public class MetricsModule : IModule
 
   public IServiceCollection Register(WebApplicationBuilder builder)
   {
+    builder.AddServiceDefaults();
 
     return builder.Services;
   }
