@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 Presentation", "90 Prese
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndMonitoringWithDotNet", "LoggingAndMonitoringWithDotNet\LoggingAndMonitoringWithDotNet.csproj", "{7C12CCA4-3E53-48AD-A2B8-9FD7FBE6084D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndMonitoringWithDotNet.AppHost", "LoggingAndMonitoringWithDotNet.AppHost\LoggingAndMonitoringWithDotNet.AppHost.csproj", "{7DF27DB7-F848-4934-997F-B9717D7A6F4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndMonitoringWithDotNet.AppHost", "LoggingAndMonitoringWithDotNet.AppHost\LoggingAndMonitoringWithDotNet.AppHost.csproj", "{B3F9DCFA-A1DE-49CD-AF66-79166964790E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndMonitoringWithDotNet.ServiceDefaults", "LoggingAndMonitoringWithDotNet.ServiceDefaults\LoggingAndMonitoringWithDotNet.ServiceDefaults.csproj", "{1A54969F-139E-40DF-A140-CB74E68A81B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndMonitoringWithDotNet.ServiceDefaults", "LoggingAndMonitoringWithDotNet.ServiceDefaults\LoggingAndMonitoringWithDotNet.ServiceDefaults.csproj", "{804560FD-91EA-4142-83A5-46C41BE5F2D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{7C12CCA4-3E53-48AD-A2B8-9FD7FBE6084D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C12CCA4-3E53-48AD-A2B8-9FD7FBE6084D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C12CCA4-3E53-48AD-A2B8-9FD7FBE6084D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DF27DB7-F848-4934-997F-B9717D7A6F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DF27DB7-F848-4934-997F-B9717D7A6F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DF27DB7-F848-4934-997F-B9717D7A6F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DF27DB7-F848-4934-997F-B9717D7A6F4A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A54969F-139E-40DF-A140-CB74E68A81B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A54969F-139E-40DF-A140-CB74E68A81B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A54969F-139E-40DF-A140-CB74E68A81B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A54969F-139E-40DF-A140-CB74E68A81B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F9DCFA-A1DE-49CD-AF66-79166964790E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F9DCFA-A1DE-49CD-AF66-79166964790E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F9DCFA-A1DE-49CD-AF66-79166964790E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F9DCFA-A1DE-49CD-AF66-79166964790E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{804560FD-91EA-4142-83A5-46C41BE5F2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{804560FD-91EA-4142-83A5-46C41BE5F2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{804560FD-91EA-4142-83A5-46C41BE5F2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{804560FD-91EA-4142-83A5-46C41BE5F2D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

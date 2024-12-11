@@ -2,6 +2,8 @@ using LoggingAndMonitoringWithDotNet.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 // Register Modules
 builder.RegisterModules();
 
